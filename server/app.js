@@ -16,5 +16,6 @@ db.sequelize.sync()
 // })
 // .catch((err) => console.log(err));
 
+app.use('/user', require('./routes/auth.routes'))
 
 module.exports = app

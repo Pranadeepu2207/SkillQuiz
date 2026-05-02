@@ -10,14 +10,34 @@ import {
     Button,
 } from "react-bootstrap";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
+// import axios from 'axios'
 import logo from "../../assets/logo.png";
 import calculator from "../../assets/calculator.png";
 import "./SignupPage.css";
 
 const SignupPage = () => {
     const [show, setShow] = useState(false);
-    const [showConfirmPassword, setShowConfirmpassword] = useState(false)
-    const navigate = useNavigate()
+    const [showConfirmPassword, setShowConfirmpassword] = useState(false);
+    const navigate = useNavigate();
+
+    const [email, setEmail] = useState(null)
+    const [password, setPassword] = useState(null)
+    const [userName, setUsername] = useState(null)
+
+    const [confirmPassword, setConfirmPassword] = useState("");
+
+    const isMatch = confirmPassword && password === confirmPassword;
+    const isMismatch = confirmPassword && password !== confirmPassword;
+
+    const onRegisterUser = (e) => {
+        e.preventDefault()
+        console.log(email, password, userName)
+        setEmail("")
+        setPassword("")
+        setConfirmPassword("")
+        setUsername("")
+    }
+
     return (
         <>
             <Container fluid className="vh-100">
@@ -55,14 +75,28 @@ const SignupPage = () => {
                             >
                                 Sign Up
                             </h3>
-                            <Form className="mt-3">
+                            <Form className="mt-3" onSubmit={(e) => onRegisterUser(e)}>
                                 <Form.Group className="mb-3" controlId="formBasicUsername">
                                     <Form.Label>Username</Form.Label>
-                                    <Form.Control type="text" placeholder="Enter username" required />
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Enter username"
+                                        name="username"
+                                        onChange={(e) => setUsername(e.target.value)}
+                                        value={userName}
+                                        required
+                                    />
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                     <Form.Label>Email address</Form.Label>
-                                    <Form.Control type="email" placeholder="Enter email" required />
+                                    <Form.Control
+                                        type="email"
+                                        placeholder="Enter email"
+                                        name="email"
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        value={email}
+                                        required
+                                    />
                                 </Form.Group>
 
                                 <Form.Group
@@ -74,6 +108,9 @@ const SignupPage = () => {
                                         <Form.Control
                                             type={show ? "text" : "password"}
                                             placeholder="Password"
+                                            name="password"
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            value={password}
                                             required
                                         />
 
@@ -94,16 +131,23 @@ const SignupPage = () => {
                                         <Form.Control
                                             type={showConfirmPassword ? "text" : "password"}
                                             placeholder="Password"
+                                            name="confirmpassword"
+                                            onChange={(e) => setConfirmPassword(e.target.value)}
+                                            value={confirmPassword}
                                             required
                                         />
 
                                         <Button
                                             variant="outline-secondary"
-                                            onClick={() => setShowConfirmpassword(!showConfirmPassword)}
+                                            onClick={() =>
+                                                setShowConfirmpassword(!showConfirmPassword)
+                                            }
                                         >
                                             {showConfirmPassword ? <EyeSlash /> : <Eye />}
                                         </Button>
                                     </InputGroup>
+                                    {isMatch && <p className="small fw-bold" style={{ color: "green" }}>Passwords match</p>}
+                                    {isMismatch && <p className="small fw-bold" style={{ color: "red" }}>Passwords do not match</p>}
                                     <Form.Text
                                         style={{ color: "var(--secondary)" }}
                                         className="align-self-end forgot-password"
@@ -116,7 +160,8 @@ const SignupPage = () => {
                                 </button>
                             </Form>
                             <span className="no-account text-center mt-3">
-                                Already have an account? <span onClick={() => navigate('/login')}>Sign In</span>
+                                Already have an account?{" "}
+                                <span onClick={() => navigate("/login")}>Sign In</span>
                             </span>
                         </Card>
                     </Col>

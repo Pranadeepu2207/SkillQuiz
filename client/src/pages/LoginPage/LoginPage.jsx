@@ -17,6 +17,18 @@ import "./LoginPage.css";
 const LoginPage = () => {
     const [show, setShow] = useState(false);
     const navigate = useNavigate()
+
+    const [email, setEmail] = useState(null)
+    const [password, setPassword] = useState(null)
+
+    const onloginUser = (e) => {
+        e.preventDefault()
+        console.log(email, password)
+
+        setEmail("")
+        setPassword("")
+    }
+
     return (
         <>
             <Container fluid className="vh-100">
@@ -54,10 +66,17 @@ const LoginPage = () => {
                             >
                                 Login
                             </h3>
-                            <Form className="mt-3">
+                            <Form className="mt-3" onSubmit={(e) => onloginUser(e)}>
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                     <Form.Label>Email address</Form.Label>
-                                    <Form.Control type="email" placeholder="Enter email" />
+                                    <Form.Control
+                                        type="email"
+                                        placeholder="Enter email"
+                                        name="email"
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        value={email}
+                                        required
+                                    />
                                 </Form.Group>
 
                                 <Form.Group
@@ -69,6 +88,10 @@ const LoginPage = () => {
                                         <Form.Control
                                             type={show ? "text" : "password"}
                                             placeholder="Password"
+                                            name="password"
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            value={password}
+                                            required
                                         />
 
                                         <Button
@@ -78,12 +101,6 @@ const LoginPage = () => {
                                             {show ? <EyeSlash /> : <Eye />}
                                         </Button>
                                     </InputGroup>
-                                    <Form.Text
-                                        style={{ color: "var(--secondary)" }}
-                                        className="align-self-end forgot-password"
-                                    >
-                                        Forgot Password?
-                                    </Form.Text>
                                 </Form.Group>
                                 <button type="submit" className="login-btn w-100">
                                     Login
