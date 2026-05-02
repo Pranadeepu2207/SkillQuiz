@@ -10,7 +10,9 @@ import {
     Button,
 } from "react-bootstrap";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
-// import axios from 'axios'
+import axios from 'axios'
+import { apiUrls } from "../../api";
+import { TailSpin } from 'react-loader-spinner'
 import logo from "../../assets/logo.png";
 import calculator from "../../assets/calculator.png";
 import "./SignupPage.css";
@@ -23,19 +25,38 @@ const SignupPage = () => {
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
     const [userName, setUsername] = useState(null)
+    const [loading, setLoading] = useState(false)
 
     const [confirmPassword, setConfirmPassword] = useState("");
 
     const isMatch = confirmPassword && password === confirmPassword;
     const isMismatch = confirmPassword && password !== confirmPassword;
 
-    const onRegisterUser = (e) => {
+    const [error, setError] = useState("")
+
+    const onRegisterUser = async (e) => {
         e.preventDefault()
-        console.log(email, password, userName)
-        setEmail("")
-        setPassword("")
-        setConfirmPassword("")
-        setUsername("")
+        setError("")
+        setLoading(true)
+        // console.log(email, password, userName)
+
+        try {
+            const res = await axios.post(apiUrls.registerApi, {
+                name: userName, email, password
+            })
+            console.log(res)
+            setLoading(false)
+            setEmail("")
+            setPassword("")
+            setConfirmPassword("")
+            setUsername("")
+            navigate("/login")
+        } catch (err) {
+            console.log(err.response)
+            setLoading(false)
+            setError(err?.response.data.message)
+        }
+
     }
 
     return (
@@ -82,7 +103,10 @@ const SignupPage = () => {
                                         type="text"
                                         placeholder="Enter username"
                                         name="username"
-                                        onChange={(e) => setUsername(e.target.value)}
+                                        onChange={(e) => {
+                                            setUsername(e.target.value)
+                                            setEmail("")
+                                        }}
                                         value={userName}
                                         required
                                     />
@@ -93,7 +117,10 @@ const SignupPage = () => {
                                         type="email"
                                         placeholder="Enter email"
                                         name="email"
-                                        onChange={(e) => setEmail(e.target.value)}
+                                        onChange={(e) => {
+                                            setEmail(e.target.value)
+                                            setError("")
+                                        }}
                                         value={email}
                                         required
                                     />
@@ -109,7 +136,10 @@ const SignupPage = () => {
                                             type={show ? "text" : "password"}
                                             placeholder="Password"
                                             name="password"
-                                            onChange={(e) => setPassword(e.target.value)}
+                                            onChange={(e) => {
+                                                setError("")
+                                                setPassword(e.target.value)
+                                            }}
                                             value={password}
                                             required
                                         />
@@ -132,7 +162,10 @@ const SignupPage = () => {
                                             type={showConfirmPassword ? "text" : "password"}
                                             placeholder="Password"
                                             name="confirmpassword"
-                                            onChange={(e) => setConfirmPassword(e.target.value)}
+                                            onChange={(e) => {
+                                                setConfirmPassword(e.target.value)
+                                                setError("")
+                                            }}
                                             value={confirmPassword}
                                             required
                                         />
@@ -155,9 +188,19 @@ const SignupPage = () => {
                                         Forgot Password?
                                     </Form.Text>
                                 </Form.Group>
-                                <button type="submit" className="login-btn w-100">
-                                    Sign Up
+                                <button type="submit" className="login-btn w-100 d-flex justify-content-center">
+                                    {loading ? <TailSpin
+                                        visible={true}
+                                        height="30"
+                                        width="80"
+                                        color="#f6f7f6"
+                                        ariaLabel="tail-spin-loading"
+                                        radius="1"
+                                        wrapperStyle={{}}
+                                        wrapperClass=""
+                                    /> : "Signup"}
                                 </button>
+                                {error && <p className="small fw-semibold mt-1 text-danger text-center">{error}</p>}
                             </Form>
                             <span className="no-account text-center mt-3">
                                 Already have an account?{" "}
