@@ -1,0 +1,27 @@
+.btn-primary{
+    background-color: var(--primary);
+}
+
+/* .btn-primary:hover{
+    transform: scale(1.1);
+} */
+
+.levels-btn{
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 12px;
+    background-color: none;
+    color: #fff;
+    width: 100px;
+}
+
+.levels-btn:hover{
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+.skill-card:hover{
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}

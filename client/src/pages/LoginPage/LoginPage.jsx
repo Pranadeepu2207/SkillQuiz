@@ -47,7 +47,7 @@ const LoginPage = () => {
         } catch (err) {
             console.log(err.response)
             setLoading(false)
-            setError(err?.response?.data?.message)
+            setError(err?.response?.data?.message || "Server not Responding")
         }
     };
 

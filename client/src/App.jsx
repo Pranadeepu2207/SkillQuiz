@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard/Dashboard'
 import Skillspage from './pages/SkillsPage/SkillsPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 import Leaderboard from './pages/Leaderboard/Leaderboard'
+import QuestionsPage from './pages/QuestionsPage/QuestionsPage'
 
 
 import './App.css'
@@ -22,6 +23,7 @@ const App = () => {
         </Route>
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<SignupPage />} />
+        <Route path="/quiz" element={<QuestionsPage />} />
       </Routes>
     </BrowserRouter>
   )

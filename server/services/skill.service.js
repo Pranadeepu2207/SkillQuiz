@@ -3,7 +3,7 @@ const createError = require('http-errors')
 
 exports.getSkills = async () => {
     const skills = await Skill.findAll(({
-        attributes: ["id", "name"]
+        attributes: ["id", "name", "imageUrl"]
     }))
 
     if (!skills.length) {

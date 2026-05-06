@@ -1,8 +1,10 @@
 const questionService = require("../services/question.service")
 
 exports.getQuestions = async (req, res) => {
+    console.log(req.query)
     try {
         const questions = await questionService.getQuestions(req.query)
+        console.log("from ques controller:", questions)
 
         res.status(200).json({
             success: true,

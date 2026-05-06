@@ -6,6 +6,10 @@ const Skill = sequelize.define("Skill", {
         type: DataTypes.STRING,
         unique: true,
         allowNull: false
+    },
+    imageUrl: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
 })
 

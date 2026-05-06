@@ -8,10 +8,10 @@ const seed = async () => {
         console.log("Db Reset")
 
         const skills = await Skill.bulkCreate([
-            { name: "HTML & CSS" },
-            { name: "JavaScript" },
-            { name: "React" },
-            { name: "Node.js" }
+            { name: "HTML & CSS", imageUrl: "https://res.cloudinary.com/dfsq067fd/image/upload/v1777979535/browser_1_d77rr3.png" },
+            { name: "JavaScript", imageUrl: "https://res.cloudinary.com/dfsq067fd/image/upload/v1777979534/js_1_xn9bdv.png" },
+            { name: "React", imageUrl: "https://res.cloudinary.com/dfsq067fd/image/upload/v1777979534/atom_o5ypif.png" },
+            { name: "Node.js", imageUrl: "https://res.cloudinary.com/dfsq067fd/image/upload/v1777979535/node-js_uaz7gs.png" }
         ])
 
         const levels = await Level.bulkCreate([
