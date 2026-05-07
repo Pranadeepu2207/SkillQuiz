@@ -102,7 +102,7 @@ const SkillsPage = () => {
 
                         {skillsData.map(skill => (
                             <Col xs={6} md={4} lg={3} key={skill.id} className="mb-3 d-flex justify-content-center flex-wrap">
-                                <Card style={{ width: '12rem' }} className="skill-card">
+                                <Card className='shadow-lg' style={{ width: '12rem' }} className="skill-card">
                                     <Card.Img variant="top" src={skill.imageUrl} className="p-4" />
                                     <Card.Body className="text-center">
                                         <Card.Title className="fw-bold" style={{ fontSize: "1rem" }}>{skill.name}</Card.Title>

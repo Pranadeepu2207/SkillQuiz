@@ -6,5 +6,6 @@ export const apiUrls = {
     loginApi: baseUrl + '/user/login',
     getSkillsApi: baseUrl + '/skills',
     getLevelsApi: baseUrl + '/levels',
-    getQuestionsApi: (skillId, levelId) => baseUrl + `/quiz/questions?skillId=${skillId}&levelId=${levelId}`
+    getQuestionsApi: (skillId, levelId) => baseUrl + `/quiz/questions?skillId=${skillId}&levelId=${levelId}`,
+    submitQUiz: baseUrl + '/submit-quiz'
 }

@@ -51,3 +51,14 @@
     object-fit: cover;
     padding: 2px;
 }
+
+
+
+.outlet-bg-container{
+  background: linear-gradient(
+    135deg,
+    #f5f3ff 0%,
+    #ede9fe 35%,
+    #c4b5fd 100%
+  );
+}

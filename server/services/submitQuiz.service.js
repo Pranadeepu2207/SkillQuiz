@@ -3,6 +3,8 @@ const createError = require("http-errors")
 
 exports.submitQuiz = async ({ skillId, levelId, answers }) => {
 
+    console.log("from submit quiz service", skillId, levelId)
+
     if (!skillId || !levelId) {
         throw createError(400, "SkillId and LevelId are required")
     }

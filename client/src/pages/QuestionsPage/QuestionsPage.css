@@ -1,3 +1,8 @@
 .questions-page-bg-container{
-    background-image: radial-gradient(#fff, #8B5CF6);
+    background: linear-gradient(
+    135deg,
+    #f5f3ff 0%,
+    #ede9fe 35%,
+    #c4b5fd 100%
+  );
 }

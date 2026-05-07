@@ -62,7 +62,7 @@ const QuestionsPage = () => {
         }
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
 
         const payload = {
             skillId,
@@ -76,6 +76,14 @@ const QuestionsPage = () => {
         }
 
         console.log(payload)
+        try {
+            const res = await axios.post(apiUrls.submitQUiz, payload)
+            if (res.status == 200) {
+                console.log(res)
+            }
+        } catch (err) {
+            console.log(err)
+        }
     }
 
 

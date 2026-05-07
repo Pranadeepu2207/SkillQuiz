@@ -34,7 +34,7 @@ const DashboardLayout = () => {
                 </div>
 
                 {/* DYNAMIC PAGE CONTENT */}
-                <div className="p-4">
+                <div className="p-4 outlet-bg-container">
                     <Outlet />
                 </div>
             </div>
