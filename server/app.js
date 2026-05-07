@@ -20,5 +20,6 @@ app.use('/user', require('./routes/auth.routes'))
 app.use('/skills', require("./routes/skill.routes"))
 app.use('/levels', require('./routes/level.routes'))
 app.use('/quiz', require('./routes/question.routes'))
+app.use('/submit-quiz', require("./routes/submitQuiz.route"))
 
 module.exports = app
