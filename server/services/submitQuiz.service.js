@@ -1,9 +1,9 @@
-const { Question } = require("../models/index");
+const { Question, QuizResult } = require("../models/index");
 const createError = require("http-errors")
 
-exports.submitQuiz = async ({ skillId, levelId, answers }) => {
+exports.submitQuiz = async ({ skillId, levelId, userId, answers }) => {
 
-    console.log("from submit quiz service", skillId, levelId)
+    console.log("from submit quiz service", skillId, levelId, userId)
 
     if (!skillId || !levelId) {
         throw createError(400, "SkillId and LevelId are required")
@@ -34,10 +34,10 @@ exports.submitQuiz = async ({ skillId, levelId, answers }) => {
 
         if (selectedOption === undefined) {
             unanswered.push({
-                questionId: q.id,
-                question: q.question,
-                options: q.options,
-                correctAnswer: q.correctAnswer
+                questionId: question.id,
+                question: question.question,
+                options: question.options,
+                correctAnswer: question.correctAnswer
             })
         } else {
             attempted += 1
@@ -54,6 +54,28 @@ exports.submitQuiz = async ({ skillId, levelId, answers }) => {
                 })
             }
         }
+    })
+
+    const percentage = Number(
+        ((score / allQuestions.length) * 100).toFixed(2)
+    )
+
+    await QuizResult.create({
+
+        userId,
+
+        skillId,
+
+        levelId,
+
+        score,
+
+        totalQuestions: allQuestions.length,
+
+        attemptedQuestions: attempted,
+
+        percentage
+
     })
 
     return {

@@ -35,3 +35,10 @@
 .sidebar-link.active .icon {
     transform: scale(1.15);
 }
+
+.logout-btn {
+    width: 100%;
+    border: none;
+    background: transparent;
+    text-align: left;
+}

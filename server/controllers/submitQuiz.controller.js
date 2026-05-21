@@ -3,9 +3,9 @@ const submitQuizService = require("../services/submitQuiz.service")
 exports.submitQuiz = async (req, res) => {
 
     try {
-        const { skillId, levelId, answers } = req.body
-        console.log("from submit quiz controller", skillId, levelId, answers)
-        const result = await submitQuizService.submitQuiz({skillId, levelId, answers})
+        const { skillId, levelId, userId, answers } = req.body
+        console.log("from submit quiz controller", skillId, levelId, userId, answers)
+        const result = await submitQuizService.submitQuiz({ skillId, levelId, userId, answers })
 
         return res.status(200).json({
             success: true,
