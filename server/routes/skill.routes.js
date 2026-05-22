@@ -1,8 +1,9 @@
 const skillController = require("../controllers/skill.contoller")
+const authMiddleware = require("../middlewares/auth.middleware")
 const express = require("express")
 
 const router = express.Router()
 
-router.get("/", skillController.getSkills)
+router.get("/", authMiddleware, skillController.getSkills)
 
 module.exports = router

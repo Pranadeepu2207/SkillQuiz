@@ -10,7 +10,8 @@ import {
     Button,
 } from "react-bootstrap";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
-import axios from 'axios'
+// import axios from 'axios'
+import api from "../../axiosInterceptor";
 import { apiUrls } from "../../api";
 import { TailSpin } from 'react-loader-spinner'
 import logo from "../../assets/logo.png";
@@ -33,7 +34,7 @@ const LoginPage = () => {
         setLoading(true)
         // console.log(email, password);
         try {
-            const res = await axios.post(apiUrls.loginApi, { email, password })
+            const res = await api.post(apiUrls.loginApi, { email, password })
             console.log(res)
             if (res.status == 200) {
                 console.log(res?.data?.data?.accessToken)

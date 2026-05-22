@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Col, Container, ProgressBar, Row } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 import { apiUrls } from "../../api";
+import api from "../../axiosInterceptor";
 import { RotatingLines } from "react-loader-spinner";
 
 import backBtn from "../../assets/back-button.png";
@@ -48,7 +49,7 @@ const QuestionsPage = () => {
 
             try {
 
-                const res = await axios.get(
+                const res = await api.get(
                     apiUrls.getQuestionsApi(skillId, levelId)
                 );
 
@@ -71,23 +72,6 @@ const QuestionsPage = () => {
         getQuestions();
 
     }, [skillId, levelId]);
-
-    useEffect(() => {
-
-        if (resultData) return;
-
-        if (timeLeft <= 0) {
-            handleSubmit();
-            return;
-        }
-
-        const timer = setInterval(() => {
-            setTimeLeft(prev => prev - 1);
-        }, 1000);
-
-        return () => clearInterval(timer);
-
-    }, [timeLeft, resultData]);
 
     const formatTime = (seconds) => {
 
@@ -120,15 +104,14 @@ const QuestionsPage = () => {
     };
 
     const handleSubmit = async () => {
-        const userInfo = JSON.parse(localStorage.getItem("userInfo"))
-        const userId = userInfo.id
+        // const userInfo = JSON.parse(localStorage.getItem("userInfo"))
+        // const userId = userInfo.id
 
         if (loading || resultData) return;
 
         const payload = {
             skillId,
             levelId,
-            userId,
             answers: Object.keys(answers).map(questionId => ({
                 questionId: Number(questionId),
                 selectedOption: answers[questionId]
@@ -139,7 +122,7 @@ const QuestionsPage = () => {
 
         try {
 
-            const res = await axios.post(
+            const res = await api.post(
                 apiUrls.submitQUiz,
                 payload
             );
@@ -159,6 +142,25 @@ const QuestionsPage = () => {
             setLoading(false);
         }
     };
+
+    useEffect(() => {
+
+        if (resultData) return;
+
+        if (timeLeft <= 0) {
+            handleSubmit();
+            return;
+        }
+
+        const timer = setInterval(() => {
+            setTimeLeft(prev => prev - 1);
+        }, 1000);
+
+        return () => clearInterval(timer);
+
+    }, [timeLeft, resultData]);
+
+
 
     if (loading) {
 

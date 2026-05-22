@@ -10,7 +10,8 @@ import {
     Button,
 } from "react-bootstrap";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
-import axios from 'axios'
+// import axios from 'axios'
+import api from "../../axiosInterceptor";
 import { apiUrls } from "../../api";
 import { TailSpin } from 'react-loader-spinner'
 import logo from "../../assets/logo.png";
@@ -41,7 +42,7 @@ const SignupPage = () => {
         // console.log(email, password, userName)
 
         try {
-            const res = await axios.post(apiUrls.registerApi, {
+            const res = await api.post(apiUrls.registerApi, {
                 name: userName, email, password
             })
             console.log(res)

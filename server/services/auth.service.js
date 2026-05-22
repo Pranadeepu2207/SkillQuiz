@@ -22,7 +22,7 @@ exports.register = async ({ name, email, password }) => {
     email,
     password: hashedPassword,
   });
-  
+
   return {
     id: user.id,
     name: user.name,
@@ -44,7 +44,7 @@ exports.login = async ({ email, password }) => {
     throw createError(401, "Invalid email or password");
   }
 
-  const token = jwt.sign({ id: user.id }, SECRET_TOKEN, { expiresIn: '24h' })
+  const token = jwt.sign({ id: user.id }, SECRET_TOKEN, { expiresIn: '10h' })
 
   return ({ user, token })
 

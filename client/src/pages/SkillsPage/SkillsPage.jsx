@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import axios from 'axios'
+// import axios from 'axios'
+import api from "../../axiosInterceptor"
 import { RotatingLines } from "react-loader-spinner"
 
 import { Container, Row, Col, Card, Button, Modal } from 'react-bootstrap'
@@ -25,7 +26,7 @@ const SkillsPage = () => {
         const getAllSkills = async () => {
             setLoading(true)
             try {
-                const res = await axios.get(apiUrls.getSkillsApi)
+                const res = await api.get(apiUrls.getSkillsApi)
                 if (res.status == 200) {
                     setLoading(false)
                     console.log(res)
@@ -41,7 +42,7 @@ const SkillsPage = () => {
         const getAllLevels = async () => {
             setLoading(true)
             try {
-                const res = await axios.get(apiUrls.getLevelsApi)
+                const res = await api.get(apiUrls.getLevelsApi)
                 if (res.status == 200) {
                     console.log(res)
                     setLoading(false)
