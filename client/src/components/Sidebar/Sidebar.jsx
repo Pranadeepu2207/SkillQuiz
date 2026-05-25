@@ -32,13 +32,13 @@ const Sidebar = ({ onClick, hideTitleOnMobile }) => {
                                 <span className="icon">📚</span> Skills
                             </NavLink>
 
-                            <NavLink
+                            {/* <NavLink
                                 to="/profile"
                                 onClick={onClick}
                                 className={({ isActive }) => `sidebar-link ${isActive ? "active" : ""}`}
                             >
                                 <span className="icon">👤</span> Profile
-                            </NavLink>
+                            </NavLink> */}
 
                             <NavLink
                                 to="/leaderboard"
