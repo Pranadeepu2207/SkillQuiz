@@ -6,12 +6,7 @@ import { apiUrls } from "../../api";
 import api from "../../axiosInterceptor";
 import { RotatingLines } from "react-loader-spinner";
 
-import backBtn from "../../assets/back-button.png";
-import correct from "../../assets/correct.png";
-import incorrect from "../../assets/incorrect.png";
-import unanswer from "../../assets/unanswer.png";
-import total from "../../assets/total.png";
-import nxtBtn from "../../assets/next.png";
+import { CheckCircleFill, XCircleFill, QuestionCircleFill, JournalText, ChevronRight, ArrowLeft } from "react-bootstrap-icons";
 
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
@@ -220,11 +215,7 @@ const QuestionsPage = () => {
                         className="btn p-0"
                         onClick={() => navigate("/")}
                     >
-                        <img
-                            src={backBtn}
-                            alt="back"
-                            style={{ width: "25px", height: "25px" }}
-                        />
+                        <ArrowLeft size={22} className="text-primary me-1" />
                     </button>
 
                     <span className="fw-bold d-none d-md-flex text-primary">
@@ -319,10 +310,7 @@ const QuestionsPage = () => {
                                             className="stats-icon-bg"
                                             style={{ background: "#DCFCE7" }}
                                         >
-                                            <img
-                                                src={correct}
-                                                className="stats-icon"
-                                            />
+                                            <CheckCircleFill size={24} style={{ color: "#10B981" }} />
                                         </div>
 
                                         <h4>
@@ -345,10 +333,7 @@ const QuestionsPage = () => {
                                             className="stats-icon-bg"
                                             style={{ background: "#FEE2E2" }}
                                         >
-                                            <img
-                                                src={incorrect}
-                                                className="stats-icon"
-                                            />
+                                            <XCircleFill size={24} style={{ color: "#EF4444" }} />
                                         </div>
 
                                         <h4>
@@ -371,10 +356,7 @@ const QuestionsPage = () => {
                                             className="stats-icon-bg"
                                             style={{ background: "#FFEDD5" }}
                                         >
-                                            <img
-                                                src={unanswer}
-                                                className="stats-icon"
-                                            />
+                                            <QuestionCircleFill size={24} style={{ color: "#F59E0B" }} />
                                         </div>
 
                                         <h4>
@@ -397,10 +379,7 @@ const QuestionsPage = () => {
                                             className="stats-icon-bg"
                                             style={{ background: "#EDE9FE" }}
                                         >
-                                            <img
-                                                src={total}
-                                                className="stats-icon"
-                                            />
+                                            <JournalText size={24} style={{ color: "#6366F1" }} />
                                         </div>
 
                                         <h4>
@@ -440,12 +419,7 @@ const QuestionsPage = () => {
                                 <div className="review-left">
 
                                     <div className="review-icon-bg incorrect-bg">
-
-                                        <img
-                                            src={incorrect}
-                                            className="review-icon"
-                                        />
-
+                                        <XCircleFill size={22} style={{ color: "#EF4444" }} />
                                     </div>
 
                                     <div>
@@ -468,13 +442,7 @@ const QuestionsPage = () => {
                                         {resultData.incorrect.length}
                                     </span>
 
-                                    <img
-                                        src={nxtBtn}
-                                        style={{
-                                            width: "30px",
-                                            height: "30px"
-                                        }}
-                                    />
+                                    <ChevronRight size={20} className="text-secondary" />
 
                                 </div>
 
@@ -499,12 +467,7 @@ const QuestionsPage = () => {
                                 <div className="review-left">
 
                                     <div className="review-icon-bg unanswered-bg">
-
-                                        <img
-                                            src={unanswer}
-                                            className="review-icon"
-                                        />
-
+                                        <QuestionCircleFill size={22} style={{ color: "#F59E0B" }} />
                                     </div>
 
                                     <div>
@@ -527,13 +490,7 @@ const QuestionsPage = () => {
                                         {resultData.unanswered.length}
                                     </span>
 
-                                    <img
-                                        src={nxtBtn}
-                                        style={{
-                                            width: "30px",
-                                            height: "30px"
-                                        }}
-                                    />
+                                    <ChevronRight size={20} className="text-secondary" />
 
                                 </div>
 
@@ -565,11 +522,7 @@ const QuestionsPage = () => {
                         className="btn p-0"
                         onClick={() => setShowReview(false)}
                     >
-                        <img
-                            src={backBtn}
-                            alt="back"
-                            style={{ width: "25px", height: "25px" }}
-                        />
+                        <ArrowLeft size={22} className="text-primary me-1" />
                     </button>
 
                     <span className="fw-bold text-primary">

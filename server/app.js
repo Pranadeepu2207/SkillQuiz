@@ -17,6 +17,10 @@ db.sequelize.sync().then(async () => {
             console.log("Database is empty. Seeding skills and questions...");
             const seed = require("./seeder");
             await seed();
+            
+            console.log("Seeding mock quiz results and users...");
+            const seedQuizResults = require("./seedQuizResults");
+            await seedQuizResults();
         }
     } catch (error) {
         console.error("Auto-seeding checking failed:", error);
