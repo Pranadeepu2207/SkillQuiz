@@ -21,6 +21,13 @@ db.sequelize.sync().then(async () => {
             console.log("Seeding mock quiz results and users...");
             const seedQuizResults = require("./seedQuizResults");
             await seedQuizResults();
+        } else {
+            const resultCount = await db.QuizResult.count();
+            if (resultCount === 0) {
+                console.log("Skills exist but no quiz results. Seeding mock quiz results...");
+                const seedQuizResults = require("./seedQuizResults");
+                await seedQuizResults();
+            }
         }
     } catch (error) {
         console.error("Auto-seeding checking failed:", error);
