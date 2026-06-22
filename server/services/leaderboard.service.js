@@ -21,6 +21,17 @@ exports.getLeaderboard = async ({
 
     }
 
+    const resultCount = await QuizResult.count();
+    if (resultCount === 0) {
+        console.log("No quiz results found. Seeding on-demand...");
+        try {
+            const seedQuizResults = require("../seedQuizResults");
+            await seedQuizResults();
+        } catch (seedErr) {
+            console.error("On-demand seeding failed:", seedErr);
+        }
+    }
+
     const skillExists = await Skill.findByPk(skillId)
 
     if (!skillExists) {

@@ -108,8 +108,20 @@ const Leaderboard = () => {
                     api.get("/skills"),
                     api.get("/levels"),
                 ]);
-                if (skillsRes.status === 200) setSkillsData(skillsRes.data.data);
-                if (levelsRes.status === 200) setLevelsData(levelsRes.data.data);
+                if (skillsRes.status === 200) {
+                    const skills = skillsRes.data.data;
+                    setSkillsData(skills);
+                    if (skills.length > 0) {
+                        setSelectedSkill(skills[0].id);
+                    }
+                }
+                if (levelsRes.status === 200) {
+                    const levels = levelsRes.data.data;
+                    setLevelsData(levels);
+                    if (levels.length > 0) {
+                        setSelectedLevel(levels[0].id);
+                    }
+                }
             } catch (err) {
                 setError(err?.response?.data?.message || "Server not Responding");
             } finally {
