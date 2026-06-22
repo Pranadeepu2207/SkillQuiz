@@ -200,12 +200,20 @@ const seed = async () => {
         await Question.bulkCreate(formattedQuestions)
 
         console.log("Seeding completed successfully");
-        process.exit();
+        if (require.main === module) {
+            process.exit();
+        }
 
     } catch (error) {
-        console.log("seeding error: ", error)
-        process.exit(1)
+        console.log("seeding error: ", error);
+        if (require.main === module) {
+            process.exit(1);
+        }
     }
 }
 
-seed()
+module.exports = seed;
+
+if (require.main === module) {
+    seed();
+}
