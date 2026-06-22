@@ -21,9 +21,10 @@ exports.getLeaderboard = async ({
 
     }
 
-    const resultCount = await QuizResult.count();
-    if (resultCount === 0) {
-        console.log("No quiz results found. Seeding on-demand...");
+    const aliceUser = await User.findOne({ where: { email: "alice@example.com" } });
+    const hasAliceResults = aliceUser ? await QuizResult.findOne({ where: { userId: aliceUser.id } }) : null;
+    if (!hasAliceResults) {
+        console.log("Mock quiz results missing. Seeding on-demand...");
         try {
             const seedQuizResults = require("../seedQuizResults");
             await seedQuizResults();

@@ -3,18 +3,22 @@ const bcrypt = require("bcrypt");
 
 const seedQuizResults = async () => {
     try {
-        let users = await db.User.findAll();
-
-        // If there are no users, seed some mock users first
-        if (users.length === 0) {
-            console.log("No users found. Seeding mock users first...");
+        const mockEmails = ["alice@example.com", "bob@example.com", "charlie@example.com"];
+        const existingMocks = await db.User.findAll({ where: { email: mockEmails } });
+        
+        if (existingMocks.length < mockEmails.length) {
+            console.log("Mock users missing. Seeding them...");
             const hashedPassword = await bcrypt.hash("password123", 10);
-            users = await db.User.bulkCreate([
+            const mocksToCreate = [
                 { name: "Alice Smith", email: "alice@example.com", password: hashedPassword },
                 { name: "Bob Jones", email: "bob@example.com", password: hashedPassword },
                 { name: "Charlie Brown", email: "charlie@example.com", password: hashedPassword }
-            ]);
+            ].filter(mock => !existingMocks.some(em => em.email === mock.email));
+            
+            await db.User.bulkCreate(mocksToCreate);
         }
+
+        let users = await db.User.findAll();
 
         const skills = await db.Skill.findAll();
         const levels = await db.Level.findAll();

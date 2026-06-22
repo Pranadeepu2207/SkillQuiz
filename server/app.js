@@ -22,9 +22,10 @@ db.sequelize.sync().then(async () => {
             const seedQuizResults = require("./seedQuizResults");
             await seedQuizResults();
         } else {
-            const resultCount = await db.QuizResult.count();
-            if (resultCount === 0) {
-                console.log("Skills exist but no quiz results. Seeding mock quiz results...");
+            const aliceUser = await db.User.findOne({ where: { email: "alice@example.com" } });
+            const hasAliceResults = aliceUser ? await db.QuizResult.findOne({ where: { userId: aliceUser.id } }) : null;
+            if (!hasAliceResults) {
+                console.log("Mock quiz results missing. Seeding mock quiz results...");
                 const seedQuizResults = require("./seedQuizResults");
                 await seedQuizResults();
             }
