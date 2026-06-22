@@ -23,7 +23,7 @@ const QuestionsPage = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const { skillId, levelId } = location.state;
+    const { skillId, levelId } = location.state || {};
 
     const QUIZ_TIME = 10 * 60;
 
@@ -40,6 +40,14 @@ const QuestionsPage = () => {
     const [reviewType, setReviewType] = useState("");
 
     const [timeLeft, setTimeLeft] = useState(QUIZ_TIME);
+
+    useEffect(() => {
+
+        if (!skillId || !levelId) {
+            navigate("/");
+        }
+
+    }, [skillId, levelId, navigate])
 
     useEffect(() => {
 
@@ -148,7 +156,7 @@ const QuestionsPage = () => {
         if (resultData) return;
 
         if (timeLeft <= 0) {
-            handleSubmit();
+            Promise.resolve().then(() => handleSubmit());
             return;
         }
 
@@ -686,18 +694,9 @@ const QuestionsPage = () => {
                 <div key={i} className="mb-3">
 
                     <label
-                        className="d-flex align-items-center p-3 option-label"
-                        style={{
-                            background:
-                                selectedOption === opt
-                                    ? "#6366F1"
-                                    : "#fff",
-
-                            color:
-                                selectedOption === opt
-                                    ? "#fff"
-                                    : "#111"
-                        }}
+                        className={`d-flex align-items-center p-3 option-label ${
+                            selectedOption === opt ? "selected" : ""
+                        }`}
                     >
 
                         <input
@@ -706,10 +705,12 @@ const QuestionsPage = () => {
                             value={opt}
                             checked={selectedOption === opt}
                             onChange={() => handleSelect(opt)}
-                            className="me-3"
+                            className="d-none"
                         />
+                        
+                        <span className="custom-check-dot me-3"></span>
 
-                        {opt}
+                        <span className="option-text">{opt}</span>
 
                     </label>
 

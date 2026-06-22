@@ -32,15 +32,12 @@ const DashboardLayout = () => {
                         className="mobile-profile"
                     />
                 </div>
-
-                {/* DYNAMIC PAGE CONTENT */}
                 <div className="p-4 outlet-bg-container">
                     <Outlet />
                 </div>
             </div>
 
             {/* MOBILE OFFCANVAS SIDEBAR */}
-            {/* REMOVED: responsive="md" so it stops rendering inline on desktop */}
             <Offcanvas show={show} onHide={handleClose} placement="start">
                 <Offcanvas.Header closeButton className="border-bottom">
                     <Offcanvas.Title className="fw-bold text-brand">SkillQuiz</Offcanvas.Title>

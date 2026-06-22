@@ -22,8 +22,8 @@ const LoginPage = () => {
     const [show, setShow] = useState(false);
     const navigate = useNavigate();
 
-    const [email, setEmail] = useState(null);
-    const [password, setPassword] = useState(null);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)

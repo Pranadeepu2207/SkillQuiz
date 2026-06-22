@@ -1,5 +1,6 @@
 import { Nav, Modal, Button } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
+import { Book, Trophy, Power } from 'react-bootstrap-icons';
 
 import './Sidebar.css';
 import { useState } from "react";
@@ -29,8 +30,9 @@ const Sidebar = ({ onClick, hideTitleOnMobile }) => {
                                 onClick={onClick}
                                 className={({ isActive }) => `sidebar-link ${isActive ? "active" : ""}`}
                             >
-                                <span className="icon">📚</span> Skills
+                                <Book className="icon" /> Skills
                             </NavLink>
+
 
                             {/* <NavLink
                                 to="/profile"
@@ -45,8 +47,9 @@ const Sidebar = ({ onClick, hideTitleOnMobile }) => {
                                 onClick={onClick}
                                 className={({ isActive }) => `sidebar-link ${isActive ? "active" : ""}`}
                             >
-                                <span className="icon">🏆</span> Leaderboard
+                                <Trophy className="icon" /> Leaderboard
                             </NavLink>
+
 
                         </Nav>
                     </div>
@@ -56,8 +59,9 @@ const Sidebar = ({ onClick, hideTitleOnMobile }) => {
                             className="sidebar-link logout-btn"
                             onClick={handleLogout}
                         >
-                            <span className="icon">⏻</span> Logout
+                            <Power className="icon" /> Logout
                         </button>
+
                     </div>
                 </div>
             </div>

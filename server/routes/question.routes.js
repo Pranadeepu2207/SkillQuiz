@@ -1,4 +1,4 @@
-const quizContoller = require("../controllers/question.contoller")
+const quizContoller = require("../controllers/question.controller")
 const authMiddleware = require("../middlewares/auth.middleware")
 const express = require("express")
 

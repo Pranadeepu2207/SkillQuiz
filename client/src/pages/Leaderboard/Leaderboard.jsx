@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../axiosInterceptor";
 import { Container, Row, Col, Form } from "react-bootstrap";
+import { Trophy } from "react-bootstrap-icons";
 import { RotatingLines } from "react-loader-spinner";
 import "./Leaderboard.css";
 
@@ -121,6 +122,7 @@ const Leaderboard = () => {
     useEffect(() => {
         const getLeaderboard = async () => {
             setLoading(true);
+            setError("")
             try {
                 const res = await api.get(
                     `/leaderboard?skillId=${selectedSkill}&levelId=${selectedLevel}`,
@@ -151,8 +153,9 @@ const Leaderboard = () => {
             <Container fluid className="lb-container">
                 <div className="lb-header">
                     <h2 className="lb-title">
-                        🏆 {selectedSkillName} — {selectedLevelName} Leaderboard
+                        <Trophy className="me-2" style={{ color: "#f59e0b" }} /> {selectedSkillName} — {selectedLevelName} Leaderboard
                     </h2>
+
                     <p className="lb-subtitle">
                         See how players are performing this week
                     </p>

@@ -1,4 +1,4 @@
-const levelController = require("../controllers/level.contoller")
+const levelController = require("../controllers/level.controller")
 const authMiddleware = require("../middlewares/auth.middleware")
 const express = require("express")
 

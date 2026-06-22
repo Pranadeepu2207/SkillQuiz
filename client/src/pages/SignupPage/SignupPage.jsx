@@ -23,9 +23,9 @@ const SignupPage = () => {
     const [showConfirmPassword, setShowConfirmpassword] = useState(false);
     const navigate = useNavigate();
 
-    const [email, setEmail] = useState(null)
-    const [password, setPassword] = useState(null)
-    const [userName, setUsername] = useState(null)
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [userName, setUsername] = useState("")
     const [loading, setLoading] = useState(false)
 
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -106,7 +106,7 @@ const SignupPage = () => {
                                         name="username"
                                         onChange={(e) => {
                                             setUsername(e.target.value)
-                                            setEmail("")
+                                            setError("")
                                         }}
                                         value={userName}
                                         required

@@ -81,12 +81,14 @@ const SkillsPage = () => {
 
     return (
         <>
-            <Container fluid className="vh-100 d-flex flex-column">
-                <h3>Skills</h3>
-                <p>Choose a skill to start quiz and test your knowledge</p>
-                <Row className="mt-5">
+            <Container fluid className="d-flex flex-column animate-fade-in">
+                <div className="skills-header">
+                    <h3>Skills</h3>
+                    <p>Choose a skill to start quiz and test your knowledge</p>
+                </div>
+                <Row className="mt-4">
                     <>
-                        {loading && <div className="d-flex align-items-center justify-content-center">
+                        {loading && <div className="d-flex align-items-center justify-content-center w-100 py-5">
                             <RotatingLines
                                 visible={true}
                                 height="96"
@@ -99,15 +101,15 @@ const SkillsPage = () => {
                                 wrapperClass=""
                             /></div>}
 
-                        {error && <h5 className="fw-bold text-danger text-center">{error}</h5>}
+                        {error && <h5 className="fw-bold text-danger text-center w-100 py-4">{error}</h5>}
 
                         {skillsData.map(skill => (
-                            <Col xs={6} md={4} lg={3} key={skill.id} className="mb-3 d-flex justify-content-center flex-wrap">
-                                <Card className='shadow-lg' style={{ width: '12rem' }} className="skill-card">
+                            <Col xs={12} sm={6} md={4} lg={3} key={skill.id} className="mb-4 d-flex justify-content-center">
+                                <Card className="skill-card w-100">
                                     <Card.Img variant="top" src={skill.imageUrl} className="p-4" />
-                                    <Card.Body className="text-center">
-                                        <Card.Title className="fw-bold" style={{ fontSize: "1rem" }}>{skill.name}</Card.Title>
-                                        <Button variant="primary" onClick={() => handleSkillClick(skill)}>Start Quiz</Button>
+                                    <Card.Body className="text-center d-flex flex-column justify-content-between">
+                                        <Card.Title>{skill.name}</Card.Title>
+                                        <Button className="login-btn w-100 mt-2" onClick={() => handleSkillClick(skill)}>Start Quiz</Button>
                                     </Card.Body>
                                 </Card>
                             </Col>
